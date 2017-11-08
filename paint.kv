@@ -1,0 +1,73 @@
+#:import C kivy.utils.get_color_from_hex
+
+<RadioButton>:
+    background_normal: 'color_button_normal.png'
+    background_down: 'color_button_down.png'
+    border: (3, 3, 3, 3)
+
+
+<ColorButton@RadioButton>:
+    group: 'color'
+    on_release: app.canvas_widget.set_color(self.background_color)
+
+
+<LineWidthButton@RadioButton>:
+    group: 'line_width'
+    color: C('#2c3e50')
+    background_color: C('#ecf0f1')
+
+
+BoxLayout:
+    orientation: 'vertical'
+    padding: 2
+    spacing: 2
+    x: 0
+    top: root.top
+    width: 80
+    height: 110
+
+    LineWidthButton:
+        text: 'Thin'
+
+    LineWidthButton:
+        text: 'Normal'
+        state: 'down'
+
+    LineWidthButton:
+        text: 'Thick'
+
+
+<CanvasWidget>:
+    Button:
+        text: 'Delete'
+        right: root.right
+        top: root.top
+        width: 80
+        height: 40
+        on_release: root.clear_canvas()
+
+
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 3
+        spacing: 3
+        x: 0
+        y: 0
+        width: root.width
+        height: 40
+
+
+        ColorButton:
+            background_color: C('#66ccff')
+
+        ColorButton:
+            background_color: C('#ccff66')
+
+        ColorButton:
+            background_color: C('#ff66cc')
+
+        ColorButton:
+            background_color: C('#000000')
+            state: 'down'
+
+
